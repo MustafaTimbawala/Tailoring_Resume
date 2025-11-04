@@ -1,0 +1,29 @@
+# Virtual environment folders
+venv/
+.env/
+env/
+ENV/
+.venv/ 
+
+master_*
+
+# Python cache and build files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Build / distribution folders
+build/
+dist/
+*.egg-info/
+
+# Environment and configuration files
+*.env
+*.log
+
+# IDE and editor files (optional but recommended)
+.vscode/
+.idea/
+.DS_Store
