@@ -5,7 +5,7 @@ from functions import retrieve, gen_exp_sec, State
 from langgraph.graph import START, StateGraph 
 from contextlib import asynccontextmanager 
 from pydantic import BaseModel, Field
-
+from db.index import create_application, update_application
 
 class TailoringRequest(BaseModel):
     question: str = Field(..., description="Query for retrieving relevant context")
@@ -79,7 +79,9 @@ async def generate_experience(request: TailoringRequest):
             context=[], 
             answer="",
         )
-        result = resume_graph.invoke(current_state)
+        result = resume_graph.invoke(current_state) 
+        new_application = create_application(request.job_title,request.company, request.job_description, result["answer"].content)
+        print(new_application)
         return result["answer"].content
     
     except Exception as e:

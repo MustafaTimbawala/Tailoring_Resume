@@ -1,0 +1,16 @@
+<main class="main"> 
+  <div class="task_bar"> 
+    <h1 id="title">Job Tailoring</h1> 
+  <div class="button_group" > 
+    <button>Past Apps</button>
+    <button>Master Resume</button>
+  </div>
+
+  </div>
+  
+  <div class="content">
+    <app-request-form (newResumeEvent)="updateDisplay($event)"></app-request-form>
+  </div>
+</main>
+
+<router-outlet />

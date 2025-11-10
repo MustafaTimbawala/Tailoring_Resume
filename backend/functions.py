@@ -4,7 +4,8 @@ from langchain_core.documents import Document
 from langchain_core.tools import tool
 from data.master.fomatting import formats, tasks 
 from langgraph.graph import START, StateGraph
-from components import vector_store_class,  google_llm, loader, text_splitter, generic_template, resume_template
+from components import vector_store_class,  google_llm, loader, text_splitter, generic_template, resume_template 
+
 
 vector_store = vector_store_class
 llm  = google_llm
@@ -42,4 +43,18 @@ def gen_exp_sec(state: State):
     message = resume_template.invoke({"job_title": state["job_title"], "context": docs_content, "company": state["company"], "job_description": state["job_description"], "task": task, "formatting" : formatting, "word_limit": word_limit, "tone": tone }) 
     print(message)
     response = llm.invoke(message) 
-    return {"answer" : response}
+    return {"answer" : response}  
+
+def gen_proj_sec(state: State): 
+    docs_content = "\n\n".join(doc.page_content for doc in state["context"]) 
+    task = tasks["experience_section"]
+    formatting = formats["experience"] 
+    word_limit =200; 
+    tone = ""
+    message = resume_template.invoke({"job_title": state["job_title"], "context": docs_content, "company": state["company"], "job_description": state["job_description"], "task": task, "formatting" : formatting, "word_limit": word_limit, "tone": tone }) 
+    print(message)
+    response = llm.invoke(message) 
+    return {"answer" : response} 
+
+
+

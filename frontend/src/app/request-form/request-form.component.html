@@ -1,0 +1,27 @@
+<form (ngSubmit)="submitForm()">
+  <input
+    type="text"
+    id="job_title"
+    [(ngModel)]="job_title"
+    name="job_title"
+    placeholder="Job Title"
+    required
+  />
+  <input
+    type="text"
+    id="company_name"
+    [(ngModel)]="company_name"
+    name="company_name"
+    placeholder="Company Name"
+    required
+  />
+  <input
+    type="text"
+    id="job_desc"
+    [(ngModel)]="job_desc"
+    name="job_desc"
+    placeholder="Job Description"
+    required
+  />
+  <button type="submit">Submit</button>
+</form>

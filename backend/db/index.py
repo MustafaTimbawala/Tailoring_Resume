@@ -2,7 +2,7 @@ from tinydb import TinyDB, Query
 import uuid
 
 # Initialize the database (creates a JSON file if it doesn't exist)
-db = TinyDB("applications_db.json")
+db = TinyDB("db/applications_db.json")
 applications = db.table("applications")
 
 # ------------------------------
@@ -11,7 +11,8 @@ applications = db.table("applications")
 # Each application record will look like:
 # {
 #   "id": "a1b2c3d4",
-#   "title": "Software Engineering Intern - Google",
+#   "title": "Software Engineering Intern - Google", 
+#   "company":  "Google"
 #   "job_description": "Looking for a candidate with React, Node.js, and cloud experience...",
 #   "generated_resume": "<tailored resume text here>"
 # }
@@ -20,12 +21,13 @@ applications = db.table("applications")
 # CRUD FUNCTIONS
 # ------------------------------
 
-def create_application(title: str, job_description: str, generated_resume: str = "") -> str:
+def create_application(title: str, company:str, job_description: str, generated_resume: str = "") -> str:
     """Create a new application record and add it to the database."""
     record_id = str(uuid.uuid4())
     new_record = {
         "id": record_id,
-        "title": title,
+        "title": title, 
+        "company": company,
         "job_description": job_description,
         "generated_resume": generated_resume,
     }
